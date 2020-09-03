@@ -58,7 +58,7 @@ window.addEventListener('load', function () {
                 console.log(res);
                 if (res.status == 0) {
                     // 将唯一标识符存储
-                    // localStorage.setItem('token', res.token)
+                    localStorage.setItem('token', res.token)
                     setTimeout(() => {
                         location.href = '/index.html'
 
