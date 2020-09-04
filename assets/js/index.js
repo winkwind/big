@@ -5,23 +5,7 @@ $(function () {
         url: '/my/userinfo',
 
         success(res) {
-            console.log(res);
-            if (res.status === 0) {
-                // 渲染用户信息
-                // 名字
-                $("#welcome").html(`欢迎\&nbsp;\&nbsp;${res.data.nickname || res.data.username}`)
-                // 头像
-                if (res.data.user_pic === null) {
-                    $(".text-avatar").html(res.data.username[0].toUpperCase())
-                    $(".text-avatar").show();
-                    $(".layui-nav-img").hide();
-                }
-                else {
-                    $(".text-avatar").hide();
-                    $(".layui-nav-img").show();
-                }
-
-            }
+            getUser_info(res);
         }
     })
     // 退出
@@ -38,25 +22,22 @@ $(function () {
         })
     })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })
+function getUser_info(res) {
+    if (res.status === 0) {
+        // 渲染用户信息
+        // 名字
+        $("#welcome").html(`欢迎\&nbsp;\&nbsp;${res.data.nickname || res.data.username}`)
+        // 头像
+        if (res.data.user_pic === null) {
+            $(".text-avatar").html((res.data.nickname || res.data.username)[0].toUpperCase())
+            $(".text-avatar").show();
+            $(".layui-nav-img").hide();
+        }
+        else {
+            $(".text-avatar").hide();
+            $(".layui-nav-img").show().prop('src', res.data.user_pic);
+        }
+
+    }
+}

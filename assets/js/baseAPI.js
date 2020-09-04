@@ -10,11 +10,10 @@ $.ajaxPrefilter(function (option) {
         }
     }
     option.complete = function (res) {
-        console.log(res);
-        if (res.responseJSON.status === 1) {
+        if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
             // 退出并返回登录界面
             localStorage.removeItem('token')
-            location.href = '/login.html'
+            parent.location.href = '/login.html'
 
 
         }
