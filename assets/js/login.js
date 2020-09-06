@@ -33,7 +33,6 @@ window.addEventListener('load', function () {
             type: 'post',
             data: $("#reg").serialize(),
             success(res) {
-                console.log(res);
                 // 弹出提示
                 layer.msg(res.message)
                 if (res.status == 0) {
@@ -55,7 +54,6 @@ window.addEventListener('load', function () {
                 res.token
                 // 弹出提示
                 layer.msg(res.message)
-                console.log(res);
                 if (res.status == 0) {
                     // 将唯一标识符存储
                     localStorage.setItem('token', res.token)
